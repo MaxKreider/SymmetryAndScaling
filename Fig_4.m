@@ -1,6 +1,6 @@
 %% setup
 
-%mr clean, gravy why you flow so mean
+%mr clean
 clc
 clear
 
@@ -23,11 +23,11 @@ J = 2;
 a = 0*pi;
 b = pi;
 
-% number of samples (same as before)
+%number of samples (same as before)
 nr = numel(1:0.25:1.3);
 ntheta = numel(0:0.05:2*pi);
 
-% uniformly distributed random samples
+%uniformly distributed random samples
 r0 = 1 + (1.3 - 1) * rand(1, nr);
 theta0 = 0 + (2*pi - 0) * rand(1, ntheta);
 
@@ -136,8 +136,6 @@ for count1 = 1:length(r0)
 
 
     end
-
-    count1
 end
 
 
@@ -242,7 +240,7 @@ c2 = V(:,end-1)
 c1 = c1/c1(end-1);
 c2 = c2/c2(1);
 
-% 1. Semilog plot of singular values
+%semilog plot of singular values
 figure(1)
 semilogy(sv,'k.-','LineWidth',1.5,'markersize',40)
 xlabel('Index')
@@ -250,11 +248,11 @@ ylabel('Singular Value')
 grid on
 set(gca,'fontsize',15)
 
-% Prepare labels for the bar plots
+%prepare labels for the bar plots
 nCoeffs = length(c1);
 labels = arrayfun(@(k) sprintf('c%d', k-1), 1:nCoeffs, 'UniformOutput', false);
 
-% 2. Bar plot for c1
+%bar plot for c1
 figure(2)
 bar(c1, 'FaceColor', [1 0.5 0])
 xticks(1:nCoeffs)
@@ -265,7 +263,7 @@ set(gca,'fontsize',15)
 ylim([-1.2 1.2])
 ylabel('Value')
 
-% 3. Bar plot for c2
+%bar plot for c2
 figure(3)
 bar(c2, 'FaceColor', [1 0.5 0])
 xticks(1:nCoeffs)
@@ -275,17 +273,3 @@ grid on
 set(gca,'fontsize',15)
 ylim([-.2 1.2])
 ylabel('Value')
-
-
-%% error analysis
-
-%true nullspace vector
-truth1 = [1 0 0 0 0 0 0 0 0 0 0 0]';
-truth2 = [0 0 0 0 0 0 0 -1 0 0 1 0]';
-truth = [truth1,truth2];
-
-%approximate
-c = [c1,c2];
-
-%error
-abs(sin(subspace(truth,c)))
