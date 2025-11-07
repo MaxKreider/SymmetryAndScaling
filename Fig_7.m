@@ -1,6 +1,6 @@
 %% setup
 
-%mr clean, gravy why you flow so mean
+%mr clean
 clc
 clf
 clear
@@ -39,7 +39,7 @@ if data_type == 1
 
 else
 
-    % uniformly distributed random samples in [a,b]^2
+    %uniformly distributed random samples in [a,b]^2
     X = a + (b - a) * rand(N^2, 2);
 
 end
@@ -284,15 +284,15 @@ end
 sv = diag(sv)
 
 %approximation of the coefficients
-c= V(:,end)
+c= V(:,end);
 
 
 %% nice visualization
 
 %stuff
-c1 = 3*c/c(2);
+c1 = 3*c/c(2)
 
-% 1. Semilog plot of singular values
+%semilog plot of singular values
 figure(8)
 semilogy(sv,'k.-','LineWidth',1.5,'markersize',40)
 xlabel('Index')
@@ -300,11 +300,11 @@ ylabel('Singular Value')
 grid on
 set(gca,'fontsize',15)
 
-% Prepare labels for the bar plots
+%prepare labels for the bar plots
 nCoeffs = length(c1);
 labels = arrayfun(@(k) sprintf('c%d', k-1), 1:nCoeffs, 'UniformOutput', false);
 
-% 2. Bar plot for c1
+%bar plot for c1
 figure(9)
 bar(c1, 'FaceColor', [1 0.5 0])
 xticks(1:nCoeffs)
