@@ -1,6 +1,6 @@
 %% setup
 
-%mr clean, gravy why you flow so mean
+%mr clean
 clc
 clear
 
@@ -217,7 +217,7 @@ for i=1:N*length(alpha)
         t_new1 = T1(:,i) + a1(2)*S(:,i);
         t_new2 = T2(:,i) + a1(1)*S(:,i);
         t_new1 = t_new1/norm(t_new1);
-        t_new2 = t_new2/norm(t_new2);  %%%%%%%%% maybe something needed here to ensure orthogonality of tangent vectors
+        t_new2 = t_new2/norm(t_new2); 
 
         T1(:,i) = t_new1;
         T2(:,i) = t_new2;
@@ -248,7 +248,7 @@ end
 %take the svd to approximate nullspace
 [~,ss,V] = svd(P,'econ');
 
-sv = diag(ss);
+sv = diag(ss)
 
 %approximation of the coefficients
 c= V(:,end);
@@ -263,7 +263,7 @@ c2 = V(:,end-1);
 c1=c1/c1(1)
 c2=c2/c2(end)
 
-% 1. Semilog plot of singular values
+%semilog plot of singular values
 figure(1)
 semilogy(sv,'k.-','LineWidth',1.5,'markersize',40)
 xlabel('Index')
@@ -271,11 +271,11 @@ ylabel('Singular Value')
 grid on
 set(gca,'fontsize',15)
 
-% Prepare labels for the bar plots
+%prepare labels for the bar plots
 nCoeffs = length(c1);
 labels = arrayfun(@(k) sprintf('c%d', k-1), 1:nCoeffs, 'UniformOutput', false);
 
-% 2. Bar plot for c1
+%bar plot for c1
 figure(2)
 bar(c1, 'FaceColor', [1 0.5 0])
 xticks(1:nCoeffs)
@@ -286,7 +286,7 @@ set(gca,'fontsize',15)
 ylim([-1.5 1.5])
 ylabel('Value')
 
-% 3. Bar plot for c2
+%bar plot for c2
 figure(3)
 bar(c2, 'FaceColor', [1 0.5 0])
 xticks(1:nCoeffs)
