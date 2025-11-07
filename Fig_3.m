@@ -1,6 +1,6 @@
 %% setup
 
-%mr clean, gravy why you flow so mean
+%mr clean
 clc
 clf
 clear
@@ -219,7 +219,7 @@ end
 [~,ss,V] = svd(P,'econ');
 
 %singular values
-sv = diag(ss);
+sv = diag(ss)
 
 %approximation of the coefficients
 c= V(:,end);
@@ -228,9 +228,9 @@ c= V(:,end);
 %% nice visualization
 
 %stuff
-c1 = c/c(1);
+c1 = c/c(1)
 
-% 1. Semilog plot of singular values
+%semilog plot of singular values
 figure(1)
 semilogy(sv,'k.-','LineWidth',1.5,'markersize',40)
 xlabel('Index')
@@ -238,11 +238,11 @@ ylabel('Singular Value')
 grid on
 set(gca,'fontsize',15)
 
-% Prepare labels for the bar plots
+%prepare labels for the bar plots
 nCoeffs = length(c1);
 labels = arrayfun(@(k) sprintf('c%d', k-1), 1:nCoeffs, 'UniformOutput', false);
 
-% 2. Bar plot for c1
+%bar plot for c1
 figure(2)
 bar(c1, 'FaceColor', [1 0.5 0])
 xticks(1:nCoeffs)
